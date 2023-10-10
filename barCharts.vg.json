@@ -1,0 +1,187 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": "Monthly Subscription Fees per Country",
+    "data": {
+        "url": "Netflix_subscription_fee_Dec_2021.csv"
+    },
+    "vconcat": [
+        {
+            "width": 350,
+            "height": 80,
+            "mark": {
+                "type": "bar"
+            },
+            "encoding": {
+                "x": {
+                    "field": "Country",
+                    "type": "nominal",
+                    "scale": {
+                        "domain": {
+                            "param": "brush"
+                        }
+                    },
+                    "title": "",
+                    "axis": {
+                        "labelOverlap": true,
+                        "labelLimit": 60
+                    }
+                },
+                "y": {
+                    "field": "Cost_Per_Month_Basic",
+                    "type": "quantitative",
+                    "title": "Basic ($)",
+                    "scale": {
+                        "domain": [
+                            0,
+                            15
+                        ]
+                    }
+                },
+                "tooltip": [
+                    {
+                      "field": "Country",
+                      "type": "nominal"
+                    },
+                    {
+                      "field": "Cost_Per_Month_Basic",
+                      "type": "quantitative",
+                      "title": "Basic Subcription Fee ($)"
+                    }
+                  ]
+            }
+        },
+        {
+            "width": 350,
+            "height": 80,
+            "mark": {
+                "type": "bar",
+                "fill": "purple"
+            },
+            "encoding": {
+                "x": {
+                    "field": "Country",
+                    "type": "nominal",
+                    "scale": {
+                        "domain": {
+                            "param": "brush"
+                        }
+                    },
+                    "title": "",
+                    "axis": {
+                        "labelOverlap": true,
+                        "labelLimit": 60
+                    }
+                },
+                "y": {
+                    "field": "Cost_Per_Month_Standard",
+                    "type": "quantitative",
+                    "title": "Standard ($)",
+                    "scale": {
+                        "domain": [
+                            0,
+                            25
+                        ]
+                    }
+                },
+                "tooltip": [
+                    {
+                      "field": "Country",
+                      "type": "nominal"
+                    },
+                    {
+                      "field": "Cost_Per_Month_Standard",
+                      "type": "quantitative",
+                      "title": "Standard Subcription Fee ($)"
+                    }
+                  ]
+            }
+        },
+        {
+            "width": 350,
+            "height": 80,
+            "mark": {
+                "type": "bar",
+                "fill": "orange"
+            },
+            "encoding": {
+                "x": {
+                    "field": "Country",
+                    "type": "nominal",
+                    "scale": {
+                        "domain": {
+                            "param": "brush"
+                        }
+                    },
+                    "title": "",
+                    "axis": {
+                        "labelOverlap": true,
+                        "labelLimit": 60
+                    }
+                },
+                "y": {
+                    "field": "Cost_Per_Month_Premium",
+                    "type": "quantitative",
+                    "title": "Premium ($)",
+                    "scale": {
+                        "domain": [
+                            0,
+                            30
+                        ]
+                    }
+                },
+                "tooltip": [
+                    {
+                      "field": "Country",
+                      "type": "nominal"
+                    },
+                    {
+                      "field": "Cost_Per_Month_Premium",
+                      "type": "quantitative",
+                      "title": "Premium Subcription Fee ($)"
+                    }
+                  ]
+            }
+        },
+        {
+            "width": 350,
+            "height": 30,
+            "title": "Detail Viewer",
+            "mark": {
+                "type": "bar",
+                "fill": "grey"
+            },
+            "params": [
+                {
+                    "name": "brush",
+                    "select": {
+                        "type": "interval",
+                        "encodings": [
+                            "x"
+                        ]
+                    }
+                }
+            ],
+            "encoding": {
+                "x": {
+                    "field": "Country",
+                    "type": "nominal",
+                    "axis": {
+                        "labelOverlap": true,
+                        "labelLimit": 60,
+                        "labelFontSize": 0,
+                        "tickSize": 0
+                    }
+                },
+                "y": {
+                    "field": "Cost_Per_Month_Standard",
+                    "type": "quantitative",
+                    "axis": {
+                        "tickCount": 3,
+                        "grid": false
+                    },
+                    "title": ""
+                }
+            }
+        }
+    ]
+}

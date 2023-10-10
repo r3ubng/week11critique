@@ -1,0 +1,42 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 700,
+    "height": 400,
+    "data": {
+        "url": "Netflix_subscription_fee_Dec_2021.csv"
+    },
+    "transform": [
+        {
+            "calculate": "(datum.Cost_Per_Month_Basic + datum.Cost_Per_Month_Premium + datum.Cost_Per_Month_Standard) / 3",
+            "as": "avg_cost"
+        }        
+    ],
+    "mark": "area",
+    "encoding": {
+        "x": {
+            "field": "Country",
+            "type": "nominal"
+        },
+        "y": {
+            "field":  "avg_cost",
+            "type": "quantitative",
+            "title": "Subscription Fee ($)",
+            "scale": {
+                "domain": [
+                    0,
+                    30
+                ]
+            }
+        },
+        "tooltip": [
+            {
+              "field": "Country",
+              "type": "nominal"
+            },
+            {
+              "field": "avg_cost",
+              "type": "quantitative"
+            }
+          ]
+    }
+}

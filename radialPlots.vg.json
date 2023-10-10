@@ -1,0 +1,139 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A simple radial chart with embedded data.",
+    "data": {
+        "url": "Netflix_subscription_fee_Dec_2021.csv"
+    },
+    "transform": [
+        {
+            "aggregate": [
+                {
+                    "op": "mean",
+                    "field": "Total_Library_Size",
+                    "as": "avg_lib_size"
+                },
+                {
+                    "op": "mean",
+                    "field": "Cost_Per_Month_Standard",
+                    "as": "avg_standard_cost"
+                }
+            ],
+            "groupby": [
+                "Continent"
+            ]
+        }
+    ],
+    "vconcat": [
+        {
+            "title": "Average Library Size per Continent",
+            "layer": [
+                {
+                    "mark": {
+                        "type": "arc",
+                        "innerRadius": 50,
+                        "stroke": "#fff"
+                    }
+                },
+                {
+                    "mark": {
+                        "type": "text",
+                        "radius": 125
+                    },
+                    "encoding": {
+                        "text": {
+                            "field": "Continent",
+                            "type": "nominal"
+                        }
+                    }
+                }
+            ],
+            "encoding": {
+                "theta": {
+                    "field": "avg_lib_size",
+                    "type": "quantitative",
+                    "stack": true
+                },
+                "color": {
+                    "field": "Continent",
+                    "type": "nominal", 
+                    "scale": {
+                        "range": [
+                            "#a6cee3",
+                            "#377eb8",
+                            "#ff7f00",
+                            "#e41a1c",
+                            "#a65628",
+                            "#984ea3"
+                        ]
+                    }
+                },
+                "tooltip": [
+                    {
+                        "field": "Continent",
+                        "type": "nominal"
+                    },
+                    {
+                        "field": "avg_lib_size",
+                        "type": "quantitative",
+                        "format": ".0f"
+                    }
+                ]
+            }
+        },
+        {
+            "layer": [
+                {
+                    "mark": {
+                        "type": "arc",
+                        "innerRadius": 50,
+                        "stroke": "#fff"
+                    }
+                },
+                {
+                    "mark": {
+                        "type": "text",
+                        "radius": 125
+                    },
+                    "encoding": {
+                        "text": {
+                            "field": "Continent",
+                            "type": "nominal"
+                        }
+                    }
+                }
+            ],
+            "encoding": {
+                "theta": {
+                    "field": "avg_standard_cost",
+                    "type": "quantitative",
+                    "stack": true
+                },
+                "color": {
+                    "field": "Continent",
+                    "type": "nominal",
+                    "scale": {
+                        "range": [
+                            "#a6cee3",
+                            "#377eb8",
+                            "#ff7f00",
+                            "#e41a1c",
+                            "#a65628",
+                            "#984ea3"
+                        ]
+                    }
+                },
+                "tooltip": [
+                    {
+                        "field": "Continent",
+                        "type": "nominal"
+                    },
+                    {
+                        "field": "avg_standard_cost",
+                        "type": "quantitative",
+                        "format": ".0f"
+                    }
+                ]
+            }
+        }
+    ]
+}

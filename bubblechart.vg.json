@@ -1,0 +1,158 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 640,
+    "height": 400,
+    "title": "Netlix Number of TV shows and Movies per Country",
+    "data": {
+        "url": "Netflix_subscription_fee_Dec_2021.csv"
+    },
+    "encoding": {
+        "x": {
+            "field": "No_of_TV_Shows",
+            "type": "quantitative",
+            "title": "No. of TV Shows",
+            "axis": {
+                "tickCount": 7
+            },
+            "scale": {
+                "domain": [
+                    1500,
+                    5500
+                ]
+            }
+        },
+        "y": {
+            "field": "No_of_Movies",
+            "type": "quantitative",
+            "title": "No. of Movies",
+            "axis": {
+                "tickCount": 7
+            },
+            "scale": {
+                "domain": [
+                    1,
+                    3000
+                ]
+            }
+        }
+    },
+    "layer": [
+        {
+            "selection": {
+                "continent_highlight": {
+                    "type": "multi",
+                    "fields": [
+                        "Continent"
+                    ],
+                    "bind": "legend"
+                }
+            },
+            "mark": "circle",
+            "encoding": {
+                "color": {
+                    "field": "Continent",
+                    "type": "nominal",
+                    "scale": {
+                        "domain": [
+                            "North America",
+                            "South America",
+                            "Europe",
+                            "Africa",
+                            "Asia",
+                            "Oceania"
+                        ],
+                        "range": [
+                            "#e41a1c",
+                            "#984ea3",
+                            "#ff7f00",
+                            "#a6cee3",
+                            "#377eb8",
+                            "#a65628"
+                        ]
+                    }
+                },
+                "opacity": {
+                    "condition": {
+                        "selection": "continent_highlight",
+                        "value": 0.8
+                    },
+                    "value": 0.05
+                },
+                "size": {
+                    "field": "Total_Library_Size",
+                    "type": "quantitative",
+                    "scale": {
+                        "type": "threshold",
+                        "domain": [
+                            3000,
+                            4000,
+                            5000,
+                            6000,
+                            7000
+                        ],
+                        "range": [
+                            50,
+                            200,
+                            350,
+                            500,
+                            650,
+                            800
+                        ]
+                    },
+                    "legend": {
+                        "format": ".1s"
+                    }
+                },
+                "tooltip": [
+                    {
+                        "field": "Country",
+                        "type": "nominal"
+                    },
+                    {
+                        "field": "No_of_TV_Shows",
+                        "type": "quantitative",
+                        "format": ",",
+                        "title": "No. of TV Shows"
+                    },
+                    {
+                        "field": "No_of_Movies",
+                        "type": "quantitative",
+                        "format": ",",
+                        "title": "No. of Movies"
+                    },
+                    {
+                        "field": "Total_Library_Size",
+                        "type": "quantitative",
+                        "format": ","
+                    }
+                ]
+            }
+        },
+        {
+            "mark": {
+                "type": "text",
+                "align":"right",
+                "baseline": "middle",
+                "dx": -12,
+                "fontSize": 11.5,
+                "fontStyle": "italic"
+            },
+            "encoding": {
+                "text": {
+                    "field": "Country",
+                    "type": "nominal"
+                },
+                "color": {
+                    "value": "black"
+                },
+                "opacity": {
+                    "condition": {
+                        "test": "datum['Country'] == 'Malaysia' || datum['Country'] == 'Canada' || datum['Country'] == 'Czechia' || datum['Country'] == 'San Marino'",
+                        "value": 1
+                    },
+                    "value": 0
+                }
+            }
+        }
+    ]
+}

@@ -1,0 +1,59 @@
+body {
+  background-image: url('background.png');
+  }
+
+#mainTitle {
+  text-align: center;
+  color: crimson;
+}
+
+#mainDiv {
+  margin-top: 10px;
+  margin-left: 200px;
+  margin-right: 200px;
+  margin-bottom: 10px;
+  background-color: lightgray;
+  text-align: center;
+  border-color: lightgray;
+  border-style: solid;
+  border-width: 10px;
+}
+
+#titleDiv {
+  background-color: whitesmoke;
+}
+
+#mainDesc {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: small;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+#basicDiv {
+  text-align: center;
+  background-color: whitesmoke;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+#basicDiv2 {
+  display: flex;
+  background-color: whitesmoke;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+}
+
+#barChartText {
+  padding-left: 10px;
+}
+
+#radialPlots {
+  padding-left: 10px;
+}
+
+#borderDiv {
+  background-color: lightgray;
+  padding: 10px;
+}
